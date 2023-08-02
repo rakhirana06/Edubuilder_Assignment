@@ -1,0 +1,74 @@
+{% extends "_base.html" %}
+
+{% block title %}{{ tender.title }}{% endblock title %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!--  -->
+<div class="tender-detail sortable-list">
+    <div class="proposal-container item container" draggable="true">
+        <h1>Proposal Title - {{ tender.title }}</h1>
+        <p><b>Description</b> - {{ tender.proposal_description }}</p>
+        <p><b>Proposal Date</b> - {{ tender.proposal_date|date:"jS F, Y" }}</p>
+    </div>
+    <div class="contractor-container item container" draggable="true">
+        <h3><b>Contractor Details</b></h3>
+        <h3>{{ tender.contractor_company_name}}</h3>
+        <p>{{ tender.contractor_name }}</p>
+        <p>{{ tender.contractor_email }}</p>
+        <p>{{ tender.contractor_phone }}</p>
+    </div>
+    <div class="client-container item container" draggable="true">
+        <h3><b>Client Details</b></h3>
+        <h3>{{ tender.client_company_name}}</h3>
+        <p>{{ tender.client_name }}</p>
+        <p>{{ tender.client_email }}</p>
+        <p>{{ tender.client_phone }}</p>
+    </div>
+    <div class="finance-container item container" draggable="true">
+        <h3><b>Financial Details</b></h3>
+        <p>Price - {{ tender.finance_amount}}/- </p>
+        <p>Currency - {{ tender.finance_currency}}</p>
+    </div>
+    <div class="planning-container item container" draggable="true">
+        <h3><b>Planning Details</b></h3>
+        <p>{{ date }}</p>
+        <table>
+            <tr>
+                <th>Phases</th>
+                <th>Payment</th>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td>Phase 1</td>
+                <td>{{ tender.planning_phase1_payment }}</td>
+                <td>{{ tender.planning_phase1_date|date:"jS M, Y" }}</td>
+            </tr>
+            <tr>
+                <td>Phase 2</td>
+                <td>{{ tender.planning_phase2_payment }}</td>
+                <td>{{ tender.planning_phase2_date|date:"jS M, Y" }}</td>
+
+            </tr>
+            <tr>
+                <td>Final</td>
+                <td>{{ tender.planning_final_payment }}</td>
+                <td>{{ tender.planning_final_date|date:"jS M, Y" }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="terms-container item container" draggable="true">
+        <h3><b>Terms and Conditions</b></h3>
+        <p>
+            {{ tender.terms_and_conditions|linebreaks }}
+        </p>
+    </div>
+    <button type="button"><a href="{% url 'tender_pdf' tender.id %}">Preview</a></button>
+</div>
+<!--  -->
+
+<script src="{% static 'main.js' %}"></script>
+
+{% endblock content %}

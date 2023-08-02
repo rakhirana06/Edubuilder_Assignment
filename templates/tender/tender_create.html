@@ -1,0 +1,207 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<!-- {% block title %}New Tender{% endblock title %} -->
+<!--  -->
+{% if user.is_authenticated %}
+<!--  -->
+
+<h1>New Tender</h1>
+<form action="/new-tender/" method="post">
+    {% csrf_token %}
+    <div class="sortable-list">
+        <div class="item" draggable="true">
+            <!-- Element -->
+            <!-- <span class="order">1</span> -->
+            <div class="item-content wrapper-container">
+                <h2>Proposal Details</h2>
+                <div class="content-container">
+                    <div>
+                        {{ form.title.errors }}
+                        {{ form.title.label }}
+                        {{ form.title }}
+                    </div>
+                    <div>
+                        {{ form.proposal_description.errors }}
+                        {{ form.proposal_description.label }}
+                        {{ form.proposal_description }}
+                    </div>
+                    <div>
+                        {{ form.proposal_date.errors }}
+                        {{ form.proposal_date.label }}
+                        <input type="date" name="proposal_date"
+                            id="proposal_date"
+                            value="{{ form.proposal_date.value }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" draggable="true">
+            <!-- Element -->
+            <!-- <span class="order">2</span> -->
+            <div class="item-content wrapper-container">
+                <h2>Contractor Details</h2>
+                <div class="content-container">
+                    <div>
+                        {{ form.contractor_company_name.errors }}
+                        {{ form.contractor_company_name.label }}
+                        {{ form.contractor_company_name }}
+                    </div>
+                    <div>
+                        {{ form.contractor_name.errors }}
+                        {{ form.contractor_name.label }}
+                        {{ form.contractor_name }}
+                    </div>
+                    <div>
+                        {{ form.contractor_email.errors }}
+                        {{ form.contractor_email.label }}
+                        {{ form.contractor_email }}
+                    </div>
+                    <div>
+                        {{ form.contractor_phone.errors }}
+                        {{ form.contractor_phone.label }}
+                        {{ form.contractor_phone }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" draggable="true">
+            <!-- Element -->
+            <!-- <span class="order">3</span> -->
+            <div class="item-content wrapper-container">
+                <h2>Client Details</h2>
+                <div class="content-container">
+                    <div>
+                        {{ form.client_company_name.errors }}
+                        {{ form.client_company_name.label }}
+                        {{ form.client_company_name }}
+                    </div>
+                    <div>
+                        {{ form.client_name.errors }}
+                        {{ form.client_name.label }}
+                        {{ form.client_name }}
+                    </div>
+                    <div>
+                        {{ form.client_email.errors }}
+                        {{ form.client_email.label }}
+                        {{ form.client_email }}
+                    </div>
+                    <div>
+                        {{ form.client_phone.errors }}
+                        {{ form.client_phone.label }}
+                        {{ form.client_phone }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" draggable="true">
+            <!-- Element -->
+            <!-- <span class="order">4</span> -->
+            <div class="item-content wrapper-container">
+                <h2>Financial Details</h2>
+                <div class="content-container">
+                    <div>
+                        {{ form.finance_amount.errors }}
+                        {{ form.finance_amount.label }}
+                        {{ form.finance_amount }}
+                    </div>
+                    <div>
+                        {{ form.finance_currency.errors }}
+                        {{ form.finance_currency.label }}
+                        {{ form.finance_currency }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" draggable="true">
+            <!-- Element -->
+            <!-- <span class="order">5</span> -->
+            <div class="item-content wrapper-container">
+                <h2>Planning Details</h2>
+                <div class="content-container">
+                    <div class="planning-item-container">
+                        <h3>Phase 1 Details</h3>
+                        <div>
+                            {{ form.planning_phase1_date.errors }}
+                            {{ form.planning_phase1_date.label }}
+                            <input type="date" name="planning_phase1_date"
+                                id="planning_phase1_date"
+                                value="{{ form.planning_phase1_date.value }}">
+                        </div>
+                        <div>
+                            {{ form.planning_phase1_payment.errors }}
+                            {{ form.planning_phase1_payment.label }}
+                            {{ form.planning_phase1_payment }}
+                        </div>
+                    </div>
+                    <div class="planning-item-container">
+                        <h3>Phase 2 Details</h3>
+                        <div>
+                            {{ form.planning_phase2_date.errors }}
+                            {{ form.planning_phase2_date.label }}
+                            <input type="date" name="planning_phase2_date"
+                                id="planning_phase2_date"
+                                value="{{ form.planning_phase2_date.value }}">
+                        </div>
+                        <div>
+                            {{ form.planning_phase2_payment.errors }}
+                            {{ form.planning_phase2_payment.label }}
+                            {{ form.planning_phase2_payment }}
+                        </div>
+                    </div>
+                    <div class="planning-item-container">
+                        <h3>Final Phase Details</h3>
+                        <div>
+                            {{ form.planning_final_payment.errors }}
+                            {{ form.planning_final_payment.label }}
+                            {{ form.planning_final_payment }}
+                        </div>
+                        <div>
+                            {{ form.planning_final_date.errors }}
+                            {{ form.planning_final_date.label }}
+                            <input type="date" name="planning_final_date"
+                                id="planning_final_date"
+                                value="{{ form.planning_final_date.value }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item" draggable="true">
+            <!-- Element -->
+            <!-- <span class="order">6</span> -->
+            <div class="item-content wrapper-container">
+                <h2>Terms & Conditions</h2>
+                <div class="content-container">
+                    <div>
+                        {{ form.terms_and_conditions.errors }}
+                        {{ form.terms_and_conditions.label }}
+                        {{ form.terms_and_conditions }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="submit-button" type="submit">Create</button>
+        </div>
+    </div>
+</form>
+
+<!--  -->
+{% else %}
+
+<div class="login-cabin">
+    <h1>You are not Logged in</h1>
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'signup' %}">Sign up</a>
+</div>
+{% endif %}
+<!--  -->
+
+<script src="{% static 'main.js' %}"></script>
+
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+
+{% block title %} Update {{ tender.title }}{% endblock title %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<h1>Update </h1>
+
+{% if tender %}
+<form action method="post" class="sortable-list">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Update</button>
+</form>
+{% else %}
+<p>Tender not found.</p>
+{% endif %}
+
+{% endblock content %}

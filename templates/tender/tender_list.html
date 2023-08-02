@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+
+{% block title %}Tenders List{% endblock title %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!--  -->
+{% if user.is_authenticated %}
+<!--  -->
+<div class="user-identifier">
+    <p>Hi {{ user.username }}, Welcome.</p>
+</div>
+{% for tender in tender_list %}
+<div>
+    <h2><a href="{{ tender.get_absolute_url }}">{{ tender.title }}</a>
+        <ul>
+            <button type="button"><a href="{{ tender.get_absolute_url }}">View</a></button>
+            <button type="button"><a href="{% url 'tender_update' tender.id %}">Update</a></button>
+            <button type="button"><a href="{% url 'tender_delete' tender.id %}">Delete</a></button>
+        </ul>
+    </h2>
+</div>
+{% endfor %}
+<h1> <li class="nav-item"><a href="{% url 'tender_create' %}">Create New Tender</a></li>
+</h1>
+<p><a href="{% url 'logout' %}">Log Out</a></p>
+
+<!--  -->
+{% else %}
+
+<div class="login-cabin">
+    <h1 style="color: white">You are not Logged in</h1>
+    <a href="{% url 'login' %}">Log In</a>
+    <a href="{% url 'signup' %}">Sign up</a>
+</div>
+{% endif %}
+<!--  -->
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+
+{% block title %} Delete {{ tender.title }}{% endblock title %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+{% if tender %}
+<form action method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{ tender.title }}?</p>
+    <button type="submit">Delete</button>
+</form>
+{% else %}
+<p>Tender not found.</p>
+{% endif %}
+
+{% endblock content %}
